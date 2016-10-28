@@ -13,7 +13,7 @@
 											<span class="layout-icon-text">View Layout</span>&nbsp;&nbsp;\
 											<span class="caret"></span>\
 									</button>\
-									<div class="dropdown-menu pull-right" aria-labelledby="layout-menu">\
+									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="layout-menu">\
 										 <div class="btn-group" role="group" aria-label="View Layout" id="' + instId + '-layout-group"></div>\
 									</div>\
 								</div>')
