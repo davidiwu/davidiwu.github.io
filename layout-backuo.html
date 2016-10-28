@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+
+    <style type="text/css">
+        * {
+            margin: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        #viewer-container {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            margin: 0;
+        }
+
+        #viewer-menu {
+            float: right;
+            min-width: 200px;
+            height: 50px;
+        }
+
+        table {
+            border: 5px solid black;
+            width: 100%;
+            height: 100%;
+            padding: 5px 5px 5px 5px;
+        }
+
+            table td {
+                border: 5px solid black;
+            }
+
+        #viewer-layout {
+            clear: both;
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            margin: 0;
+            background-color: white;
+        }
+
+        .table-row {
+            height: 300px;
+        }
+
+        .table-colomn {
+            width: 300px;
+        }
+
+        .dropdown-menu {
+            min-width: 300px;
+        }
+
+        #layout-detail {
+            display: inline;
+            height: 40px;
+        }
+
+        #layout-menu {
+            width: 150px;
+            height: 40px;
+        }
+
+        svg {
+            height: 100%;
+        }
+
+        .btn-layout {
+            width: 70px;
+            height: 40px;
+        }
+
+        #layout-toggle {
+            height: 40px;
+        }
+
+        #layout-container {
+            border: 1px dotted black;
+            min-height: 600px;
+            min-width: 800px;
+        }
+
+        .default-salvo-panel {
+            border: 2px dashed black;
+            padding: 2px 2px 2px 2px;
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="viewer-container">
+
+        <!-- Example split danger button -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-danger">Action</button>
+            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+        </div>
+
+        <div id="viewer-menu">
+            <div class="dropdown">
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="layout-menu" data-toggle="dropdown">
+                    <span data-bind="label">View Layout</span>&nbsp;
+                    <span class="caret"></span>
+                </button>-->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" id="layout-menu"><span data-bind="label">View Layout</span></button>
+                    <button type="button" id="layout-toggle" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+
+                    <!--@*<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="layout-menu">
+                        *@
+                        @*
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="#">Layout 1 * 1</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="#">Layout 2 * 2 EEEEEEEEEEEEE</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="#">Layout 3 * 3</a>
+                        </li>*@
+                        @*
+                    </ul>*@
+
+                    @*<ul class="navbar-nav dropdown-menu dropdown-menu-right" role="menu">
+                        <li class="active"><a href="#">1 * 1</a></li>
+                        <li><a href="#">2 * 2</a></li>
+                        <li><a href="#">3 * 3</a></li>
+                        <li><a href="#">4 * 4</a></li>
+                    </ul>*@-->
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="btn-group" role="group" aria-label="Layout Select">
+                            <button type="button" class="btn btn-layout">
+                                <div id="layout-detail">
+                                    <svg viewbox="0 0 100 100">
+                                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" />
+                                    </svg>
+                                    1*1
+                                </div>
+                            </button>
+                            <button type="button" class="btn btn-layout">
+                                <div id="layout-detail">
+                                    <svg viewbox="0 0 100 100">
+                                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" />
+                                    </svg>
+                                    2*2
+                                </div>
+                            </button>
+                            <button type="button" class="btn btn-layout">
+                                <div id="layout-detail">
+                                    <svg viewbox="0 0 100 100">
+                                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" />
+                                    </svg>
+                                    3*3
+                                </div>
+                            </button>
+                            <button type="button" class="btn btn-layout">
+                                <div id="layout-detail">
+                                    <svg viewbox="0 0 100 100">
+                                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" />
+                                    </svg>
+                                    4*4
+                                </div>
+                            </button>
+                            <button type="button" class="btn btn-layout">
+                                <div id="layout-detail">
+                                    <svg viewbox="0 0 100 100">
+                                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" />
+                                    </svg>
+                                    5*5
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!--@*<div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">1 * 1</button>
+                        <button class="dropdown-item" type="button">2 * 2</button>
+                        <button class="dropdown-item" type="button">3 * 3</button>
+                        <button class="dropdown-item" type="button">4 * 4</button>
+                        <button class="dropdown-item" type="button">5 * 5</button>
+                        <button class="dropdown-item" type="button">6 * 6</button>
+                    </div>*@-->
+                </div>
+            </div>
+        </div>
+
+        <!--@*<nav id="header-menu-box" class="navbar navbar-default row" role="navigation">
+            <ul class="nav navbar-nav pull-right" id="viewerheader-two-rightmenu">
+                <li class="dropdown">
+                    <span class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="false">View Layout <b class="down-arrow"></b></span>
+                    <ul class="dropdown-menu" id="viewer-menu-view">
+                        <li class="header">Select Layout</li>
+                        <li>
+                            <div class="gridselector">
+                                <div id="grid1" class="grid1 salvoOption"></div>
+                                <div id="grid4" class="grid4 salvoOption"></div>
+                                <div id="grid6" class="grid6 salvoOption"></div>
+                                <div id="grid8" class="grid8 salvoOption"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>*@-->
+        <div id="layout-container">
+
+        </div>
+
+        <!--<div id="viewer-layout">
+            <table id="layout-table">
+                <tr class="table-row">
+                    <td class="table-colomn"></td>
+                    <td class="table-colomn"></td>
+                </tr>
+                <tr class="table-row">
+                    <td class="table-colomn"></td>
+                    <td class="table-colomn"></td>
+                </tr>
+            </table>
+        </div>-->
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="bootstrap/jquery.min.js"></script>
+    <script src="bootstrap/tether.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="bootstrap/jquery.resize.js"></script>    
+    <script>
+
+        (function () {
+            var attachEvent = document.attachEvent;
+            var isIE = navigator.userAgent.match(/Trident/);
+            console.log(isIE);
+            var requestFrame = (function () {
+                var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame ||
+                    function (fn) { return window.setTimeout(fn, 20); };
+                return function (fn) { return raf(fn); };
+            })();
+
+            var cancelFrame = (function () {
+                var cancel = window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame ||
+                       window.clearTimeout;
+                return function (id) { return cancel(id); };
+            })();
+
+            function resizeListener(e) {
+                var win = e.target || e.srcElement;
+                if (win.__resizeRAF__) cancelFrame(win.__resizeRAF__);
+                win.__resizeRAF__ = requestFrame(function () {
+                    var trigger = win.__resizeTrigger__;
+                    trigger.__resizeListeners__.forEach(function (fn) {
+                        fn.call(trigger, e);
+                    });
+                });
+            }
+
+            function objectLoad(e) {
+                this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__;
+                this.contentDocument.defaultView.addEventListener('resize', resizeListener);
+            }
+
+            window.addResizeListener = function (element, fn) {
+                if (!element.__resizeListeners__) {
+                    element.__resizeListeners__ = [];
+                    if (attachEvent) {
+                        element.__resizeTrigger__ = element;
+                        element.attachEvent('onresize', resizeListener);
+                    }
+                    else {
+                        if (getComputedStyle(element).position == 'static') element.style.position = 'relative';
+                        var obj = element.__resizeTrigger__ = document.createElement('object');
+                        obj.setAttribute('style', 'display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;');
+                        obj.__resizeElement__ = element;
+                        obj.onload = objectLoad;
+                        obj.type = 'text/html';
+                        if (isIE) element.appendChild(obj);
+                        obj.data = 'about:blank';
+                        if (!isIE) element.appendChild(obj);
+                    }
+                }
+                element.__resizeListeners__.push(fn);
+            };
+
+            window.removeResizeListener = function (element, fn) {
+                element.__resizeListeners__.splice(element.__resizeListeners__.indexOf(fn), 1);
+                if (!element.__resizeListeners__.length) {
+                    if (attachEvent) element.detachEvent('onresize', resizeListener);
+                    else {
+                        element.__resizeTrigger__.contentDocument.defaultView.removeEventListener('resize', resizeListener);
+                        element.__resizeTrigger__ = !element.removeChild(element.__resizeTrigger__);
+                    }
+                }
+            }
+        })();
+
+        var resizeContainer = function (e) {
+            //alert('You just resized the green box!');
+            var container = $('#layout-container');
+            var panelWidth = container.width() / 2;
+            var panelHeight = container.height() / 2;
+
+            $('.default-salvo-panel').css('width', (panelWidth - 2) + 'px');
+            $('.default-salvo-panel').css('height', (panelHeight - 2) + 'px');
+        };
+
+        var myElement = document.getElementById('layout-container');
+        addResizeListener(document.getElementById('layout-container'), resizeContainer);
+
+        $(document).ready(function () {
+            $('table td').click(function () {
+                $('table td').css('border', '5px solid black');
+                $(this).css('border', '5px solid red');
+            });
+
+            var createPanels = function () {
+
+            };
+
+
+            $('.btn-layout').on('click', function () {
+                var tar = $(event.currentTarget);
+                tar.closest('.dropdown')
+                    .find('[data-bind="label"]')
+                    .empty()
+                    .append(tar.find('#layout-detail').clone())
+                    .end()
+                    .find('.dropdown-toggle')
+                    .dropdown('toggle');
+
+                var container = $('#layout-container');
+                container.empty();
+                var panelWidth = container.width() / 2;
+                var panelHeight = container.height() / 2;
+
+                for (var i = 0; i < 4; i++){
+
+                    var template = $('#hidden-template').html();
+
+                    var leftPanel = $(template).clone();
+                    $(leftPanel).css('width', (panelWidth - 2) + 'px');
+                    $(leftPanel).css('height', (panelHeight - 2) + 'px');
+                    container.append(leftPanel);
+
+                }
+
+                //var myElement = document.getElementById('layout-container');
+                //addResizeListener(document.getElementById('layout-container'), resizeContainer);
+
+                return false;
+            });
+
+            //$('#layout-container').on('resize', resizeContainer);
+        });
+
+        var resizeContainer = function (e) {
+            //alert('You just resized the green box!');
+            var container = $('#layout-container');
+            var panelWidth = container.width() / 2;
+            var panelHeight = container.height() / 2;
+
+            $('.default-salvo-panel').css('width', (panelWidth - 2) + 'px');
+            $('.default-salvo-panel').css('height', (panelHeight - 2) + 'px');
+        };
+
+        //var myElement = document.getElementById('layout-container');
+        //addResizeListener(document.getElementById('layout-container'), resizeContainer);
+        $(window).resize(resizeContainer);
+    </script>
+
+    <script id="hidden-template" type="text/x-custom-template">
+        <div class="default-salvo-panel">
+
+        </div>
+    </script>
+
+</body>
+</html>

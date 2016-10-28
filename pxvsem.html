@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="bootstrap/jquery-ui.css" />
+		<style type="text/css">
+.slider_wrap {
+  margin: 1rem;
+  width: 30rem;
+}
+.currentSize {
+  margin: 1rem;
+}
+.boxWrap {
+  float: left;
+  margin-left: 0.5rem;
+  text-align: center; 
+}
+.box {
+  color: white;
+}
+.box p {
+  display: inline-block;
+  margin-top: 15%;
+}
+.px {
+  width: 160px;
+  height: 160px;
+  background: #1abc9c;
+}
+.rem {
+  width: 10rem;
+  height: 10rem;
+  background: #4aa3df;
+}
+.em {
+  font-size: 0.5em;
+  width: 10em;
+  height: 10em;
+  background: #34495e;
+
+}
+.width {
+  margin-top: 0.5rem;
+}
+		</style>
+
+
+
+	</head>
+	<body>
+
+		<div class="slider_wrap">
+			<div id="slider"></div>
+		</div>
+
+		<div class="currentSize">Current html font size: <code>16px</code></div>
+
+		<div class="boxWrap">
+			<div class="box px">
+				<p>Using 'px' unit</p>
+			</div>
+			<div class="width">Current width: </div>
+			<code>160px</code>
+		</div>
+
+		<div class="boxWrap">
+			<div class="box rem">
+				<p>Using 'rem' unit</p>
+				<div class="box rem">
+					<p>Using 'rem' unit</p>
+				</div>
+
+			</div>
+			<div class="width">Current width: </div>
+			<code class="flex_width">160px</code>
+		</div>
+
+		<div class="boxWrap">
+			<div class="box em">
+				<p>Using 'em' unit</p>
+				<div class="box em">
+					<p>Using 'em' unit</p>
+				</div>				
+			</div>
+			<div class="width">Current width: </div>
+			<code class="flex_width">160px</code>
+		</div>
+
+		<script src="bootstrap/jquery.min.js"></script>
+		<script src="bootstrap/jquery-ui.min.js"></script>
+		<script src="bootstrap/tether.min.js"></script>
+		<script src="bootstrap/bootstrap.min.js"></script>
+
+		<script>
+		$(function() {
+  $( "#slider" ).slider({
+    min: 9,
+    max: 42,
+    value: 16
+  });
+  $( "#slider" ).on( "slidechange", function( event, ui ) {
+    $('html').css('font-size', ui.value + 'px');
+    $('.currentSize > code').html(ui.value + 'px');
+    $('.flex_width').html((ui.value * 10) + 'px');
+  });
+});
+		</script>
+
+	</body>
+</html>

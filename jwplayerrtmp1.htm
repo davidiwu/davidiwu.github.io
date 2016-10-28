@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html>
+<head>
+    <script src="/jwplayer/jwplayer.js"></script>
+    <script src="/jwplayer/jwpsrv.js"></script>
+    <script src="/jwplayer/provider.flash.js"></script>
+    <script src="/jwplayer/polyfills.promise.js"></script>
+    <script src="/jwplayer/polyfills.vttcue.js"></script>
+    <script src="/jwplayer/polyfills.vttrenderer.js"></script>
+    
+    <script>jwplayer.key="EsAFNtXQG+5xDe6gPpWSXuRBmOwmrjC8KdtWOw==";</script>
+
+    <style>
+        .divcontainer {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 0;
+        }
+
+        .videotd {
+            width: 400px !important;
+            height: 225px !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="videolayout" class="divcontainer">
+        <table>
+            <tr>
+                <td>
+                    <div id="video1" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video2" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video3" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video4" class="videotd">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="video5" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video6" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video7" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video8" class="videotd">
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <style type="text/css">
+        @font-face {
+            font-family: 'custom';
+            src: url('/jwplayer/jw-icons.woff');
+        }
+
+        .jw-icon {
+            font-family: 'custom';
+        }
+    </style>
+    <script>
+        var playerInstance1 = jwplayer("video1");
+        playerInstance1.setup({
+            file: "rtmp://192.168.250.48:1935/live/test",
+            primary: "flash",
+            //controls: false,
+            autostart: true,
+            rtmp: {
+                bufferlength: 0.1
+            }
+        });
+
+    </script>
+</body>
+</html>

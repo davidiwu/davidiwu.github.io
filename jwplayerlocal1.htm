@@ -1,0 +1,152 @@
+﻿<!doctype html>
+<html>
+<head>
+    <script src="/jwplayer/jwplayer.js"></script>
+    <script src="/jwplayer/jwpsrv.js"></script>
+    <script src="/jwplayer/provider.flash.js"></script>
+    <script src="/jwplayer/polyfills.promise.js"></script>
+    <script src="/jwplayer/polyfills.vttcue.js"></script>
+    <script src="/jwplayer/polyfills.vttrenderer.js"></script>
+    
+    <script>jwplayer.key="EsAFNtXQG+5xDe6gPpWSXuRBmOwmrjC8KdtWOw==";</script>
+    <!--<script>jwplayer.key = "a9x/m9yUF5d8UAcb5mE59dtV/u2p8K7RioQTlWr4eWY=";</script>-->
+    <!--<script>jwplayer.key = "tZ//T5InX+J2es3ml9gysj/5aAxxplJwp0AkOY+uqKg=";</script>-->
+
+
+    <style>
+        .divcontainer {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 0;
+        }
+
+        .videotd {
+            width: 1000px !important;
+            height: 1000px !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="videolayout" class="divcontainer">
+        <table>
+            <tr>
+                <td>
+                    <div id="videocontainer1" class="videotd">
+                        <div id="video1">
+
+                        </div>
+                    </div>
+                </td>
+                <!--<td>
+                    <div id="video2" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video3" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video4" class="videotd">
+
+                    </div>
+                </td>-->
+            </tr>
+            <!--<tr>
+                <td>
+                    <div id="video5" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video6" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video7" class="videotd">
+
+                    </div>
+                </td>
+                <td>
+                    <div id="video8" class="videotd">
+
+                    </div>
+                </td>
+            </tr>-->
+        </table>
+    </div>
+
+    <button id="stop_button">Stop</button>
+    <button id="stretch_button">Aspect-Ratio</button>
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'custom';
+            src: url('/jwplayer/jw-icons.woff');
+        }
+
+        .jw-icon {
+            font-family: 'custom';
+        }
+    </style> 
+    <script>
+        //var widthvar = "400px";
+        //var heightvar = "800px";
+        var widthvar = "100%";
+        var heightvar = "100%";
+        var videoaddress = "speed_trailer_1080p1.mp4";
+        //var stretchvar = "exactfit";
+        var stretchvar = "uniform";
+        var playerInstance1 = jwplayer("video1");
+        playerInstance1.setup({
+            file: videoaddress,
+            primary: "flash",
+            controls: false,
+            autostart: true,
+            width: widthvar,
+            height: heightvar,
+            stretching: stretchvar
+            //aspectratio: "4:3"
+            //rtmp: {
+            //    bufferlength: 0.1
+            //}
+        });
+
+        var stop_button = document.getElementById("stop_button");
+        if (stop_button) {
+            stop_button.addEventListener("click", function () {
+                playerInstance1.remove();
+            }, false);
+        }
+
+        var stretch_button = document.getElementById("stretch_button");
+        if (stretch_button) {
+            stretch_button.addEventListener("click", function () {
+                //if (stretchvar == "exactfit")
+                //{
+                //    stretchvar = "uniform";
+                //}
+                //else
+                //{
+                //    stretchvar = "exactfit";
+                //}
+                //playerInstance1.setup({
+                //    file: videoaddress,
+                //    primary: "flash",
+                //    //controls: false,
+                //    autostart: true,
+                //    width: widthvar,
+                //    height: heightvar,
+                //    stretching: stretchvar
+                //});
+                //document.getElementById("video1").className = "jwplayer jw-reset jw-state-complete jw-skin-seven jw-stretch-uniform jw-flag-user-inactive";
+                jwplayer("video1").resize(500, 700);
+            }, false);
+        }
+
+    </script>
+</body>
+</html>
