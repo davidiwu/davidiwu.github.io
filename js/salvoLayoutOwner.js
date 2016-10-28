@@ -87,12 +87,12 @@
 			};
 
 			var switchToDefaultLayout = function () {
-				var defaultLayout = $('#' + instId + '-layout1');
+				var defaultLayout = $('#' + instId + '-layout8');
 				defaultLayout.closest('.dropdown')
 				.find('[data-bind="label"]')
 				.empty()
 				.append(defaultLayout.find('.layout-detail').clone());
-				switchLayout(1);
+				switchLayout(8);
 			};
 
 			createLayoutMenu();
