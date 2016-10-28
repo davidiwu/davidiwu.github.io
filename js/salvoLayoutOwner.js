@@ -1,16 +1,20 @@
 
 (function ($) {
 
-    $.fn.salvoLayoutOwner = function (allLayouts, options, panelContainer) {
+    $.fn.salvoLayoutOwner = function (options, panelContainer) {
 
 		return this.each(function () {
 
 			var viewContainer = $(this);
 			var instId = viewContainer.prop('id');
-			var viewElems = $('<div class="dropdown">\
+			var viewLayoutString = options.viewLayoutString;
+			if (!viewLayoutString) {
+			    viewLayoutString = 'View Layout';
+			}
+			var menuContainer = $('<div class="dropdown">\
 									<button type="button" class="btn btn-default dropdown-toggle layout-menu" data-toggle="dropdown">\
 											<span data-bind="label" class="layout-icon"></span>&nbsp;\
-											<span class="layout-icon-text">View Layout</span>&nbsp;&nbsp;\
+											<span class="layout-icon-text">' + viewLayoutString + '</span>&nbsp;&nbsp;\
 											<span class="caret"></span>\
 									</button>\
 									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="layout-menu">\
@@ -43,7 +47,7 @@
 			};
 
 			var switchLayout = function (layoutId) {
-				var layout = $.grep(allLayouts, function (element) {
+			    var layout = $.grep(options.layouts, function (element) {
 						return element.length === layoutId;
 					});
 				var eventName = "switchLayoutEvent";
@@ -70,8 +74,8 @@
 			var createLayoutMenu = function () {
 				var layoutGroup = $('#' + instId + '-layout-group');
 				layoutGroup.empty();
-				$.each(allLayouts, function (index, value) {
-					var layoutBtn = $('<button type="button" class="btn btn-layout"></button>');
+				$.each(options.layouts, function (index, value) {
+					var layoutBtn = $('<button type="button" class="btn"></button>');
 					layoutBtn.prop('id', instId + '-layout' + value.length);
 					layoutBtn.prop('data-layoutId', value.length);
 					layoutBtn.on('click', btnLayoutClick);
@@ -83,12 +87,12 @@
 			};
 
 			var switchToDefaultLayout = function () {
-				var defaultLayout = $('#' + instId + '-layout8');
+				var defaultLayout = $('#' + instId + '-layout1');
 				defaultLayout.closest('.dropdown')
 				.find('[data-bind="label"]')
 				.empty()
 				.append(defaultLayout.find('.layout-detail').clone());
-				switchLayout(8);
+				switchLayout(1);
 			};
 
 			createLayoutMenu();

@@ -11,9 +11,9 @@
 			var selectPanel = function (e) {
 				var tar = $(e.currentTarget);
 				tar.parent().children().each(function (index, value) {
-				    $(value).prop('style').removeProperty('outline');
+				    $(value).removeClass('layout-panel-selected');
 				});				
-				tar.css('outline', '2px solid black');
+				tar.addClass('layout-panel-selected');
 			};
 
 			var defaults = {
