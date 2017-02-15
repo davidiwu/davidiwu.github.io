@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		
+		<meta name="description" content="This is the homepage for David Wu. for more information, please go to my github profile." />
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="../bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="styles/notes.css" />
+		<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+		
+		
+	</head>
+	<body>
+	<article>
+	<h1>All about RequireJS</h1>
+	<br />
+	https://github.com/amdjs/amdjs-api/wiki/AMD
+	<br />
+	<br />
+	<h3>异步模块定义(AMD) : Asynchronous Module Definition</h3>
+
+	<p>The Asynchronous Module Definition (AMD) API specifies a mechanism for defining modules such that the module and its dependencies can be asynchronously loaded. 
+	This is particularly well suited for the browser environment where synchronous loading of modules incurs performance, usability, debugging, and cross-domain access problems.</p>
+
+	</p>AMD规范其实只有一个主要接口define(id?, dependencies?, factory)，
+	它要在声明模块的时候加载所有的依赖dependencies，并且还要当做形参传到factory中，对于依赖的模块提前进行，依赖前置。</P>
+	
+	<pre class="brush: js;">
+		define(id?, dependencies?, factory);
+	</pre>
+	</p>
+	
+	</p>The dependencies argument is optional. If omitted, it should default to ["require", "exports", "module"]. However, if the factory function's arity (length property) is less than 3, then the loader may choose to only call the factory with the number of arguments corresponding to the function's arity or length.</p>
+	<pre class="brush: js;">
+		define("alpha", ["require", "exports", "beta"], function (require, exports, beta) {
+		   exports.verb = function() {
+			   return beta.verb();
+			   //Or:
+			   return require("beta").verb();
+		   }
+	   });
+	</pre>
+	<h3>Simplified CommonJS wrapping</h3>
+
+	</p>If the dependencies argument is omitted, the module loader MAY choose to scan the factory function for dependencies in the form of require statements (literally in the form of require("module-id")). The first argument must literally be named require for this to work.</p>
+
+	</p>In some situations module loaders may choose not to scan for dependencies due to code size limitations or lack of toString support on functions (Opera Mobile is known to lack toString support for functions).</p>
+
+	<p>If the dependencies argument is present, the module loader SHOULD NOT scan for dependencies within the factory function.</p>
+
+	<p>A module defined using the simplified CommonJS wrapping:</p>
+	<pre class="brush: js;">
+	   define(function (require, exports, module) {
+		 var a = require('a'),
+			 b = require('b');
+
+		 exports.action = function () {};
+	   });
+	</pre>
+	
+	<h3>优点：</h3>
+	<ul>
+	<li>适合在浏览器环境中异步加载模块</li>
+	<li>可以并行加载多个模块</li>
+	</ul>
+
+	<h3>缺点：</h3>
+	<ul>
+	<li>提高了开发成本，代码的阅读和书写比较困难，模块定义方式的语义不顺畅</li>
+	<li>不符合通用的模块化思维方式，是一种妥协的实现</li>
+	</ul>
+
+	<p>RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一</p>
+
+	<p>RequireJS所做的是，在你使用script标签加载你所定义的依赖时，将这些依赖通过head.appendChild()函数来加载他们。当依赖加载以后，RequireJS计算出模块定义的顺序，并按正确的顺序进行调用。这意味着你需要做的仅仅是使用一个“根”来读取你需要的所有功能，然后剩下的事情只需要交给RequireJS就行了。为了正确的使用这些功能，你定义的所有模块都需要使用RequireJS的API，否者它不会像期望的那样工作。</p>
+
+	<p>RequireJS API 存在于RequireJS载入时创建的命名空间requirejs下。其主要API主要是下面三个函数:</p>
+	<ul>
+	<li>define– 该函数用户创建模块。每个模块拥有一个唯一的模块ID，它被用于RequireJS的运行时函数，define函数是一个全局函数，不需要使用requirejs命名空间.</li>
+	<li>require– 该函数用于读取依赖。同样它是一个全局函数，不需要使用requirejs命名空间.</li>
+	<li>config– 该函数用于配置RequireJS.</li>
+	</ul>
+	<p>用RequireJS定义模块</p>
+	<p>模块是进行了内部实现封装、暴露接口和合理限制范围的对象。ReuqireJS提供了define函数用于定义模块。按章惯例每个Javascript文件只应该定义一个模块。define函数接受一个依赖数组和一个包含模块定义的函数。通常模块定义函数会把前面的数组中的依赖模块按顺序做为参数接收.</p>
+
+	<p>使用require函数</p>
+
+	<p>在RequireJS中另外一个非常有用的函数是require函数。require函数用于加载模块依赖但并不会创建一个模块。例如：下面就是使用require定义了能够使用jQuery的一个函数。</p>
+
+	<pre class="brush: js;">
+	require(['jquery'], function ($) {
+		//jQuery was loaded and can be used now
+	});
+	</pre>
+	</article>
+	
+		<!-- jQuery first, then Tether, then Bootstrap JS. -->
+		<script src="../bootstrap/jquery.min.js"></script>
+		<script src="../bootstrap/tether.min.js"></script>
+		<script src="../bootstrap/bootstrap.min.js"></script>
+		
+		<script type="text/javascript" src="scripts/shCore.js"></script>
+		<script type="text/javascript" src="scripts/shBrushJScript.js"></script>
+
+		<script type="text/javascript">SyntaxHighlighter.all();</script>
+	
+	</body>
+</html>
